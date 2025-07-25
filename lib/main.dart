@@ -1,4 +1,5 @@
 import 'package:book_reader_register/pages/list_books_page.dart';
+import 'package:book_reader_register/pages/register_books_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,6 +20,14 @@ class MainApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.kalamTextTheme(Theme.of(context).textTheme),
       ),
+
+      routes: {
+        '/home': (context) => ListBooksPage(),
+        '/register': (context) => RegisterBooksPage(),
+      },
+
+      initialRoute: '/',
+
       home: ListBooksPage(),
     );
   }

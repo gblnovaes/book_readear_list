@@ -4,6 +4,11 @@ class BookModel {
   bool isRead;
 
   BookModel({this.title = '', this.description = '', this.isRead = false});
+
+  @override
+  String toString() {
+    return 'title: $title, description: $description, isRead: $isRead';
+  }
 }
 
 final booksMock = [

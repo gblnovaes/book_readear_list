@@ -1,6 +1,7 @@
 import 'package:book_reader_register/components/list_books.dart';
 import 'package:book_reader_register/components/list_divider_horizontal.dart';
 import 'package:book_reader_register/models/book_model.dart';
+import 'package:book_reader_register/pages/register_books_page.dart';
 import 'package:flutter/material.dart';
 
 class ListBooksPage extends StatefulWidget {
@@ -11,6 +12,8 @@ class ListBooksPage extends StatefulWidget {
 }
 
 class _ListBooksPageState extends State<ListBooksPage> {
+  List<BookModel> booksModel = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +32,6 @@ class _ListBooksPageState extends State<ListBooksPage> {
                       children: [
                         Text(
                           'List Books Reader',
-
                           style: TextStyle(
                             color: Color(0xFF498C9A),
                             fontSize: 26,
@@ -41,7 +43,19 @@ class _ListBooksPageState extends State<ListBooksPage> {
                           foregroundColor: Colors.white,
                           shape: CircleBorder(),
                           mini: true,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => RegisterBooksPage(
+                                  onRegisterAdd: (bookModel) {
+                                    setState(() {
+                                      booksModel.add(bookModel);
+                                    });
+                                  },
+                                ),
+                              ),
+                            );
+                          },
                           backgroundColor: Color(0xFF498C9A),
                           child: Icon(Icons.add),
                         ),
@@ -52,7 +66,7 @@ class _ListBooksPageState extends State<ListBooksPage> {
                   ListDividerHorizontal(),
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
-                    child: ListBooks(listBooks: booksMock),
+                    child: ListBooks(listBooks: booksModel),
                   ),
                 ],
               ),
